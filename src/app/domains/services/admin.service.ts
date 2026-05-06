@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Admin } from '../modules/admin.model';
 import { HttpClientModule } from '@angular/common/http'
@@ -25,7 +24,7 @@ export class AdminService {
     return this.http.put(`/admins/${id}`, newData);
   }
 
-  createAdmin<T>(data: IAdminData): Observable<T> {
+  createAdmin<T>(data: Admin): Observable<T> {
     return this.http.post(`/admins`, data);
   }
 

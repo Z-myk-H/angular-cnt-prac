@@ -113,6 +113,17 @@ export class MenuService {
       showSubMenu: false,
       subMenuItems: []
     },
+    {
+      idItem: 9,
+      itemName: 'Админы',
+      itemLink: 'administration/admins',
+      iconTypeId: 1,
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-120q-139-35-229.5-159.5T160-516v-244l320-120 320 120v227q-19-8-39-14.5t-41-9.5v-147l-240-90-240 90v188q0 47 12.5 94t35 89.5Q310-290 342-254t71 60q11 32 29 61t41 52q-1 0-1.5.5t-1.5.5Zm0-200q41 0 70.5-29.5T580-420q0-41-29.5-70.5T480-520q-41 0-70.5 29.5T380-420q0 41 29.5 70.5T480-320Zm0-120q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Z"/></svg>',
+      itemOrder: 2,
+      parentItem: 7,
+      showSubMenu: false,
+      subMenuItems: []
+    },
   ];
   private currentItemSubject = new BehaviorSubject<MenuItem>(this.menuItems[0]);
   currentItem$ = this.currentItemSubject.asObservable();

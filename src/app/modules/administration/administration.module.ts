@@ -9,6 +9,7 @@ import { AddUserFormComponent } from './pages/users-page/components/add-user-for
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../domains/modules/shared/shared.module';
 import { EditUserComponent } from './pages/users-page/components/edit-user/edit-user.component';
+import { AdminUsersPageComponent } from './pages/admin-users-page/admin-users-page.component';
 
 
 
@@ -18,7 +19,8 @@ import { EditUserComponent } from './pages/users-page/components/edit-user/edit-
     UsersPageComponent,
     RizhiComponentComponent,
     AddUserFormComponent,
-    EditUserComponent
+    EditUserComponent,
+    AdminUsersPageComponent
   ],
 
   imports: [
