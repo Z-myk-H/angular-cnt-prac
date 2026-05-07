@@ -1,34 +1,53 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Admin } from '../modules/admin.model';
-import { HttpClientModule } from '@angular/common/http'
 
-type TAdminId = string | number;
-interface IAdminData {
-  login?: string;
-  password?: string;
-  isActive?: boolean;
-  birthday?: string | Date;
+export interface Admin {
+  admin_id: number;
+  admin_login: string;
+  is_active_admin: boolean;
+  admin_birth_date: string | null;
+  created_at: string;
 }
 
-@NgModule({ 
-  imports: [HttpClientModule] 
+export interface ListAdminsResponse {
+  ok: boolean;
+  admins: Admin[];
+}
+
+@Injectable({
+  providedIn: 'root'
 })
 export class AdminService {
-  constructor() {}
+  private baseUrl = '/api/admins';
 
-  getAdminById(adminId: TAdminId): Observable<Admin> {
-    return this.http.get('/admins');
+  constructor(private http: HttpClient) {}
+
+  getAdmins(includeInactive: boolean = false, limit: number = 50, offset: number = 0): Observable<ListAdminsResponse> {
+    return this.http.get<ListAdminsResponse>(this.baseUrl, {
+      params: {
+        include_inactive: includeInactive,
+        limit: limit,
+        offset: offset
+      }
+    });
   }
 
-  updateAdmin<T>(adminId: string | number, newData: IAdminData): Observable<T> {
-    return this.http.put(`/admins/${id}`, newData);
+  getAdminById(adminId: number): Observable<Admin> {
+    return this.http.get<Admin>(`${this.baseUrl}/${adminId}`);
   }
 
-  createAdmin<T>(data: Admin): Observable<T> {
-    return this.http.post(`/admins`, data);
+  createAdmin(data: { admin_login: string; admin_password: string; is_active_admin: boolean; admin_birth_date?: string }): Observable<{ ok: boolean; admin: Admin }> {
+    return this.http.post<{ ok: boolean; admin: Admin }>(this.baseUrl, data);
   }
 
-  deleteAdmin<T>(id: TAdminId): Observable<T>{
-    return this.http.delete(`/admins/${id}`);
+  updateAdmin(adminId: number, data: { admin_login?: string; is_active_admin?: boolean; admin_birth_date?: string }): Observable<Admin> {
+    return this.http.patch<Admin>(`${this.baseUrl}/${adminId}`, data);
+  }
+
+  deleteAdmin(adminId: number, hard: boolean = false): Observable<{ ok: boolean; hard: boolean }> {
+    return this.http.delete<{ ok: boolean; hard: boolean }>(`${this.baseUrl}/${adminId}`, {
+      params: { hard: hard }
+    });
   }
 }
