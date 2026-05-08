@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../domains/modules/shared/shared.module';
 import { EditUserComponent } from './pages/users-page/components/edit-user/edit-user.component';
 import { AdminUsersPageComponent } from './pages/admin-users-page/admin-users-page.component';
+import { AddAdminFormComponent } from './pages/components/add-admin-form/add-admin-form.component';
+import { EditAdminComponent } from './pages/components/edit-admin/edit-admin.component';
 
 
 
@@ -20,7 +22,9 @@ import { AdminUsersPageComponent } from './pages/admin-users-page/admin-users-pa
     RizhiComponentComponent,
     AddUserFormComponent,
     EditUserComponent,
-    AdminUsersPageComponent
+    AdminUsersPageComponent,
+    AddAdminFormComponent,
+    EditAdminComponent
   ],
 
   imports: [

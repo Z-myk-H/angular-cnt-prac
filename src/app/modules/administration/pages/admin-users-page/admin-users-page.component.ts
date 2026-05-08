@@ -7,7 +7,10 @@ import { AdminService, Admin } from '../../../../domains/services/admin.service'
   styleUrls: ['./admin-users-page.component.css']
 })
 export class AdminUsersPageComponent implements OnInit {
+  // 0 - скрыть | 1 - добавить админа | 2 - редактировать админа
+  asideIndex: number = 0;
   admins: Admin[] = [];
+  selectedAdmin: Admin | null = null;
   loading = false;
   error: string | null = null;
 
@@ -32,5 +35,27 @@ export class AdminUsersPageComponent implements OnInit {
         console.error('Error loading admins:', err);
       }
     });
+  }
+
+  onAddAdminBtn() {
+    this.asideIndex = 1;
+    this.selectedAdmin = null;
+  }
+
+  onAdminSelect(admin: Admin) {
+    this.asideIndex = 2;
+    this.selectedAdmin = admin;
+  }
+
+  onAdminCreated(newAdmin: Admin) {
+    this.admins.unshift(newAdmin);
+    this.asideIndex = 0;
+  }
+
+  onAdminUpdated(updatedAdmin: Admin) {
+    const index = this.admins.findIndex(admin => admin.admin_id === updatedAdmin.admin_id);
+    if (index !== -1) {
+      this.admins[index] = updatedAdmin;
+    }
   }
 }
