@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -23,14 +23,8 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  getAdmins(includeInactive: boolean = false, limit: number = 50, offset: number = 0): Observable<ListAdminsResponse> {
-    return this.http.get<ListAdminsResponse>(this.baseUrl, {
-      params: {
-        include_inactive: includeInactive,
-        limit: limit,
-        offset: offset
-      }
-    });
+  getAdmins(): Observable<ListAdminsResponse> {
+    return this.http.get<ListAdminsResponse>(this.baseUrl);
   }
 
   getAdminById(adminId: number): Observable<Admin> {
@@ -46,8 +40,6 @@ export class AdminService {
   }
 
   deleteAdmin(adminId: number, hard: boolean = false): Observable<{ ok: boolean; hard: boolean }> {
-    return this.http.delete<{ ok: boolean; hard: boolean }>(`${this.baseUrl}/${adminId}`, {
-      params: { hard: hard }
-    });
+    return this.http.delete<{ ok: boolean; hard: boolean }>(`${this.baseUrl}/${adminId}`);
   }
 }

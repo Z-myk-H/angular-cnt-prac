@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { AdminService, Admin } from '../../../../domains/services/admin.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class AdminUsersPageComponent implements OnInit {
     this.loading = true;
     this.error = null;
     
-    this.adminService.getAdmins(true, 100, 0).subscribe({
+    this.adminService.getAdmins().subscribe({
       next: (response) => {
         this.admins = response.admins;
         this.loading = false;
