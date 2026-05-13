@@ -1,4 +1,9 @@
-﻿header {
+﻿:host {
+  display: block;
+  height: 100%;
+}
+
+header {
   display: flex;
   align-items: center;
   width: 100%;
@@ -6,11 +11,13 @@
   border-bottom: 1px solid var(--block-border-color);
   padding: 1rem;
   font-size: 25px;
+  background-color: var(--block-background);
 }
 
 main {
   width: 100%;
   padding: 1rem;
+  background-color: var(--block-background);
 }
 
 form {
