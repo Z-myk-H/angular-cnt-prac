@@ -1,4 +1,4 @@
-:host {
+﻿:host {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -84,4 +84,54 @@
   color: #c00;
   border-radius: 4px;
   margin-bottom: 15px;
+}
+
+.admins-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--block-background);
+}
+
+.admins-table th,
+.admins-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--block-child-border-color);
+}
+
+.admins-table th {
+  font-weight: 600;
+  color: var(--text-color);
+  background-color: var(--block-child-background);
+}
+
+.admins-table tbody tr {
+  cursor: pointer;
+}
+
+.admins-table tbody tr:hover {
+  background-color: var(--block-child-background);
+}
+
+.admins-table tbody tr td p {
+  margin: 0;
+}
+
+.admins-table .actions-cell {
+  text-align: center;
+}
+
+.delete-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
 }

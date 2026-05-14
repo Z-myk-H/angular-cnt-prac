@@ -58,4 +58,24 @@ export class AdminUsersPageComponent implements OnInit {
       this.admins[index] = updatedAdmin;
     }
   }
+
+  deleteAdmin(adminId: number) {
+    if (!confirm('Вы уверены, что хотите удалить этого администратора?')) {
+      return;
+    }
+
+    this.adminService.deleteAdmin(adminId).subscribe({
+      next: () => {
+        this.admins = this.admins.filter(admin => admin.admin_id !== adminId);
+        if (this.selectedAdmin?.admin_id === adminId) {
+          this.asideIndex = 0;
+          this.selectedAdmin = null;
+        }
+      },
+      error: (err) => {
+        console.error('Error deleting admin:', err);
+        alert('Ошибка при удалении администратора');
+      }
+    });
+  }
 }
